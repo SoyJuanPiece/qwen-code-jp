@@ -1,0 +1,44 @@
+{
+  "defaultProvider": "openrouter",
+  "defaultModel": "gpt-4o-mini",
+  "providers": {
+    "openrouter": {
+      "apiKeyEnv": "JP_CLI_OPENROUTER_KEY",
+      "baseUrl": "https://openrouter.ai/api/v1"
+    },
+    "groq": {
+      "apiKeyEnv": "JP_CLI_GROQ_KEY",
+      "baseUrl": "https://api.groq.com/openai/v1"
+    },
+    "gemini": {
+      "apiKeyEnv": "JP_CLI_GEMINI_KEY",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai"
+    },
+    "anthropic": {
+      "apiKeyEnv": "JP_CLI_ANTHROPIC_KEY",
+      "baseUrl": "https://api.anthropic.com/v1"
+    },
+    "openai": {
+      "apiKeyEnv": "JP_CLI_OPENAI_KEY",
+      "baseUrl": "https://api.openai.com/v1"
+    },
+    "deepseek": {
+      "apiKeyEnv": "JP_CLI_DEEPSEEK_KEY",
+      "baseUrl": "https://api.deepseek.com/v1"
+    },
+    "ollama": {
+      "baseUrl": "http://localhost:11434/v1"
+    },
+    "generic-openai": {
+      "baseUrl": "https://tu-endpoint/v1",
+      "headers": {
+        "X-Project": "jp-cli"
+      }
+    }
+  },
+  "fallbackOrder": ["groq", "openrouter", "ollama"],
+  "history": {
+    "enabled": true,
+    "path": "~/.config/jp-cli/history.jsonl"
+  }
+}
