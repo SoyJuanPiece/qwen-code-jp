@@ -5,9 +5,9 @@ import type { ConfigShape, ProviderId } from '../../providers/types.js';
 import { validateConfig } from '../../config/schema.js';
 import { ensureSecureConfigPath, getConfigDir, getConfigFilePath } from '../../config/secure-store.js';
 
-export async function authCommand(provider: ProviderId | undefined): Promise<number> {
+export async function authCommand(provider: ProviderId | undefined, apiKey?: string): Promise<number> {
   const p = provider ?? 'opencodezen';
-  const key = process.env.OPENCODE_API_KEY ?? process.argv.find((a, i) => process.argv[i - 1] === '--key') ?? '';
+  const key = apiKey ?? process.env.OPENCODE_API_KEY ?? '';
 
   if (!key) {
     process.stdout.write('Usage: jp auth --key <api-key> [--provider <id>]\n');
