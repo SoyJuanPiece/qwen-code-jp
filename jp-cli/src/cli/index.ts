@@ -36,7 +36,7 @@ async function main(): Promise<number> {
   }
 
   if (args.command === 'auth') {
-    return authCommand(args.provider);
+    return authCommand(args.provider, args.apiKey);
   }
 
   const config = loadConfig();
