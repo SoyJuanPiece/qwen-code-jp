@@ -12,7 +12,7 @@ function printHelp(): void {
   process.stdout.write(\`jp cli
 
 Usage:
-  jp [--provider <id>] [--model <model>] [-f <file>] [--continue] "<prompt}"
+  jp [--provider <id>] [--model <model>] [-f <file>] [--continue] "<prompt>"
   jp chat [options] "<prompt>"
   jp history
   jp clean
