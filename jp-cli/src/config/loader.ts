@@ -44,9 +44,8 @@ function resolveApiKey(
   config: ConfigShape,
   envFileVars: Record<string, string>,
 ): string | undefined {
-  const envKey =
-    config.providers?.[provider]?.apiKeyEnv ??
-    `JP_CLI_${provider.toUpperCase().replace('-', '_')}_KEY`;
+  const envKey = config.providers?.[provider]?.apiKeyEnv ??
+    (provider === 'opencodezen' ? 'OPENCODE_API_KEY' : \`JP_CLI_${provider.toUpperCase().replace('-', '_')}_KEY\`);
 
   return (
     process.env[envKey] ??
