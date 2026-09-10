@@ -12,7 +12,7 @@ function printHelp(): void {
 
 Usage:
   jp [--provider <id>] [--model <model>] [-f <file>] [--continue] "<prompt>"
-  jp chat [options] "<prompt}"
+  jp chat [options] "<prompt>"
   jp history
   jp clean
 
