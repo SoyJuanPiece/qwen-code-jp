@@ -7,6 +7,7 @@ import { createGroqAdapter } from './adapters/groq.js';
 import { createOpenRouterAdapter } from './adapters/openrouter.js';
 import { createOllamaAdapter } from './adapters/ollama.js';
 import { createGenericAdapter } from './adapters/generic-openai.js';
+import { createOpenCodeZenAdapter } from './adapters/opencodezen.js';
 
 function collectAllowedOrigins(config: ConfigShape): string[] {
   const values: string[] = [];
@@ -18,6 +19,7 @@ function collectAllowedOrigins(config: ConfigShape): string[] {
   values.push('http://localhost:11434/v1');
   values.push('http://localhost:1234/v1');
   values.push('http://localhost:8000/v1');
+  values.push('https://opencode.ai/zen/v1');
   return values;
 }
 
@@ -32,6 +34,7 @@ export function buildProviderMap(config: ConfigShape): Record<ProviderId, Provid
     groq: createGroqAdapter(config.providers?.groq, allowedEndpoints),
     openrouter: createOpenRouterAdapter(config.providers?.openrouter, allowedEndpoints),
     ollama: createOllamaAdapter(config.providers?.ollama, allowedEndpoints),
+    opencodezen: createOpenCodeZenAdapter(config.providers?.opencodezen, allowedEndpoints),
     'generic-openai': createGenericAdapter(
       'generic-openai',
       config.providers?.['generic-openai']?.baseUrl || 'http://localhost:8000/v1',
