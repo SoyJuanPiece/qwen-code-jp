@@ -1,13 +1,14 @@
 import type { ProviderId } from '../providers/types.js';
 
 export interface ParsedArgs {
-  command: 'chat' | 'history' | 'clean';
+  command: 'chat' | 'history' | 'clean' | 'auth';
   prompt?: string;
   provider?: ProviderId;
   model?: string;
   file?: string;
   continue?: boolean;
   help?: boolean;
+  apiKey?: string;
 }
 
 export function parseArgs(argv: string[]): ParsedArgs {
@@ -15,7 +16,7 @@ export function parseArgs(argv: string[]): ParsedArgs {
   const parsed: ParsedArgs = { command: 'chat' };
 
   const first = args[0];
-  if (first === 'history' || first === 'clean' || first === 'chat') {
+  if (first === 'history' || first === 'clean' || first === 'chat' || first === 'auth') {
     parsed.command = first;
     args.shift();
   }
@@ -27,13 +28,18 @@ export function parseArgs(argv: string[]): ParsedArgs {
       i += 1;
       continue;
     }
-    if ((token === '--model' || token === '-m') && args[i + 1]) {
+    if (token === '--model' || token === '-m') {
       parsed.model = args[i + 1];
       i += 1;
       continue;
     }
-    if ((token === '--file' || token === '-f') && args[i + 1]) {
+    if (token === '--file' || token === '-f') {
       parsed.file = args[i + 1];
+      i += 1;
+      continue;
+    }
+    if (token === '--key') {
+      parsed.apiKey = args[i + 1];
       i += 1;
       continue;
     }
@@ -46,7 +52,7 @@ export function parseArgs(argv: string[]): ParsedArgs {
       continue;
     }
     if (!token.startsWith('-')) {
-      parsed.prompt = parsed.prompt ? `${parsed.prompt} ${token}` : token;
+      parsed.prompt = parsed.prompt ? \`\${parsed.prompt} \${token}\` : token;
     }
   }
 
