@@ -6,20 +6,23 @@ import { resolveHistoryPath } from '../history/store.js';
 import { historyCommand } from './commands/history.js';
 import { cleanCommand } from './commands/clean.js';
 import { chatCommand } from './commands/chat.js';
+import { authCommand } from './commands/auth.js';
 
 function printHelp(): void {
   process.stdout.write(\`jp cli
 
 Usage:
-  jp [--provider <id>] [--model <model>] [-f <file>] [--continue] "<prompt>"
+  jp [--provider <id>] [--model <model>] [-f <file>] [--continue] "<prompt}"
   jp chat [options] "<prompt>"
   jp history
   jp clean
+  jp auth --key <api-key> [--provider <id>]
 
 Options:
   --provider    openai|anthropic|gemini|deepseek|groq|openrouter|ollama|opencodezen|generic-openai
   --model, -m   model id
   --file, -f    context file or directory
+  --key         API key for auth command
   --continue    continue from last local session response
   --help, -h    show help
 \`.trim());
@@ -31,6 +34,11 @@ async function main(): Promise<number> {
     printHelp();
     return 0;
   }
+
+  if (args.command === 'auth') {
+    return authCommand(args.provider);
+  }
+
   const config = loadConfig();
   const historyPath = resolveHistoryPath(config.history?.path);
 
