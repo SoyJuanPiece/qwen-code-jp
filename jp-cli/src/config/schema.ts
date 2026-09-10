@@ -8,6 +8,7 @@ const SUPPORTED_PROVIDERS: ProviderId[] = [
   'groq',
   'openrouter',
   'ollama',
+  'opencodezen',
   'generic-openai',
 ];
 
@@ -16,13 +17,13 @@ export function validateConfig(config: ConfigShape): ConfigShape {
     config.defaultProvider &&
     !SUPPORTED_PROVIDERS.includes(config.defaultProvider)
   ) {
-    throw new Error(`Unsupported defaultProvider: ${config.defaultProvider}`);
+    throw new Error(\`Unsupported defaultProvider: \${config.defaultProvider}\`);
   }
 
   if (config.fallbackOrder) {
     for (const provider of config.fallbackOrder) {
       if (!SUPPORTED_PROVIDERS.includes(provider)) {
-        throw new Error(`Unsupported provider in fallbackOrder: ${provider}`);
+        throw new Error(\`Unsupported provider in fallbackOrder: \${provider}\`);
       }
     }
   }
