@@ -8,21 +8,21 @@ import { cleanCommand } from './commands/clean.js';
 import { chatCommand } from './commands/chat.js';
 
 function printHelp(): void {
-  process.stdout.write(`jp cli
+  process.stdout.write(\`jp cli
 
 Usage:
   jp [--provider <id>] [--model <model>] [-f <file>] [--continue] "<prompt>"
-  jp chat [options] "<prompt>"
+  jp chat [options] "<prompt}"
   jp history
   jp clean
 
 Options:
-  --provider    openai|anthropic|gemini|deepseek|groq|openrouter|ollama|generic-openai
+  --provider    openai|anthropic|gemini|deepseek|groq|openrouter|ollama|opencodezen|generic-openai
   --model, -m   model id
   --file, -f    context file or directory
   --continue    continue from last local session response
   --help, -h    show help
-`);
+\`.trim());
 }
 
 async function main(): Promise<number> {
@@ -59,6 +59,6 @@ main()
   })
   .catch((error: unknown) => {
     const message = error instanceof Error ? error.message : String(error);
-    process.stderr.write(`jp error: ${message}\n`);
+    process.stderr.write(\`jp error: \${message}\n\`);
     process.exit(1);
   });
