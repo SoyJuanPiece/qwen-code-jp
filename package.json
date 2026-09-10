@@ -93,7 +93,6 @@
     "verify:installation-release": "node scripts/verify-installation-release.js",
     "release:version": "node scripts/version.js",
     "changelog": "node scripts/generate-changelog.js",
-    "telemetry": "node scripts/telemetry.js",
     "check:lockfile": "node scripts/check-lockfile.js",
     "check:desktop-isolation": "node scripts/check-desktop-isolation.js",
     "check:tui-dep-direction": "node scripts/check-tui-dep-direction.mjs",
